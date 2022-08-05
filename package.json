@@ -6,9 +6,9 @@
   "scripts": {
     "clean": "rm -rf abi",
     "contract:test": "truffle test --metwork local",
-    "test": "node scripts/vrf_prove.js",
-    "deploy:testnet": "touch config.json && truffle migrate --network testnet",
-    "deploy:astra-testnet": "touch config.json && truffle migrate --network astra_testnet",
+    "test": "node scripts/vrf.js",
+    "deploy:testnet": "yarn clean && truffle migrate --network testnet",
+    "deploy:astra-testnet": "yarn clean && truffle migrate --network astra_testnet",
     "compile": "truffle compile"
   },
   "author": "Thanh Nguyen",
