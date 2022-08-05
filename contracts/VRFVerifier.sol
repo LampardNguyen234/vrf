@@ -11,6 +11,9 @@ import "./VRF.sol";
  * 2. Removal of the `pure` modifier to allow gas consumption analysis.
  */
 contract VRFVerifier {
+
+    event VerifyStatus(bool status);
+
     function hashToTryAndIncrement(uint256[2] memory _publicKey, bytes memory _message) public returns (uint, uint) {
         return VRF.hashToTryAndIncrement(_publicKey, _message);
     }
@@ -25,7 +28,9 @@ contract VRFVerifier {
         bytes memory _message)
     public returns (bool)
     {
-        return VRF.verify(_publicKey, _proof, _message);
+        bool status = VRF.verify(_publicKey, _proof, _message);
+        emit VerifyStatus(status);
+        return status;
     }
 
     function fastVerify(
