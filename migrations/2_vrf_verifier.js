@@ -8,5 +8,4 @@ module.exports = async function (deployer, network) {
     mainContract = await VRFVerifier.deployed();
     mainContractAddress = await mainContract.address
     console.log("Main VRFVerifier contract deployed at address", mainContractAddress)
-    // setConfig('deployed.' + network + '.VRFVerifier', mainContractAddress)
 };
