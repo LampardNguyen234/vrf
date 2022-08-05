@@ -1,6 +1,6 @@
 # Installation
 ```shell
-yarn install
+yarn install --ignore-engines
 ```
 
 # Compile contracts
