@@ -4,7 +4,6 @@ pragma solidity 0.8.9;
 
 import "./VRF.sol";
 
-
 /**
  * @title Test Helper for the VRF contract
  * @dev The aim of this contract is twofold:
@@ -14,6 +13,9 @@ import "./VRF.sol";
 contract VRFVerifier {
     event VRFStatus(bool success);
 
+    function hashToTryAndIncrement(uint256[2] memory _publicKey, bytes memory _message) public returns (uint, uint) {
+        return VRF.hashToTryAndIncrement(_publicKey, _message);
+    }
 
     function gammaToHash(uint256 gammaX, uint256 gammaY) public returns (bytes32) {
         return VRF.gammaToHash(gammaX, gammaY);
@@ -52,6 +54,33 @@ contract VRFVerifier {
 
     function decodePoint(bytes memory _point) public returns (uint[2] memory) {
         return VRF.decodePoint(_point);
+    }
+
+    function encodePoint(uint _x, uint _y) public returns (bytes memory) {
+        return VRF.encodePoint(_x, _y);
+    }
+
+    function hashPoints(
+        uint256 _hPointX,
+        uint256 _hPointY,
+        uint256 _gammaX,
+        uint256 _gammaY,
+        uint256 _uPointX,
+        uint256 _uPointY,
+        uint256 _vPointX,
+        uint256 _vPointY)
+    public returns (bytes16)
+    {
+       return VRF.hashPoints(
+         _hPointX,
+         _hPointY,
+         _gammaX,
+         _gammaY,
+         _uPointX,
+         _uPointY,
+         _vPointX,
+         _vPointY
+       );
     }
 
     function computeFastVerifyParams(
