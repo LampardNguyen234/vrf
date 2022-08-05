@@ -4,9 +4,11 @@
   "description": "Verifiable Random Function (VRF) library written in Solidity",
   "main": "",
   "scripts": {
-    "test": "truffle test",
-    "test:local": "truffle test --network local",
-    "deploy:testnet": "npm run compile && touch config.json && truffle migrate --network testnet",
+    "clean": "rm -rf abi",
+    "contract:test": "truffle test --metwork local",
+    "test": "node scripts/vrf_prove.js",
+    "deploy:testnet": "touch config.json && truffle migrate --network testnet",
+    "deploy:astra-testnet": "touch config.json && truffle migrate --network astra_testnet",
     "compile": "truffle compile"
   },
   "author": "Thanh Nguyen",
@@ -26,19 +28,20 @@
   "license": "MIT",
   "dependencies": {
     "@truffle/hdwallet-provider": "2.0.13",
-    "elliptic-curve-solidity": "0.2.4",
-    "eth-gas-reporter": "0.2.25",
+    "bn.js": "^5.1.3",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "eip-712": "1.0.0",
+    "elliptic": "^6.5.3",
+    "elliptic-curve-solidity": "0.2.4",
+    "eth-gas-reporter": "0.2.25",
     "ethers": "^5.6.9",
+    "ganache": "^7.4.0",
+    "js-sha256": "^0.9.0",
+    "minimalistic-crypto-utils": "^1.0.1",
     "mocha": "10.0.0",
     "truffle-contract-size": "^2.0.1",
     "truffle-flattener": "^1.6.0",
-    "bn.js": "^5.1.3",
-    "elliptic": "^6.5.3",
-    "js-sha256": "^0.9.0",
-    "minimalistic-crypto-utils": "^1.0.1",
     "web3": "^1.4.0"
   }
 }

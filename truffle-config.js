@@ -1,11 +1,11 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const fs = require('fs');
 
-let testnetBSCProvider, mainnetBSCProvider
+let testnetBSCProvider, astraTestnetProvider
 try {
   const privateKey = fs.readFileSync(".secret").toString().trim();
   testnetBSCProvider = new HDWalletProvider(privateKey, `https://data-seed-prebsc-1-s1.binance.org:8545`, 0, 1)
-  mainnetBSCProvider = new HDWalletProvider(privateKey, `https://bsc-dataseed.binance.org/`, 0, 1)
+  astraTestnetProvider = new HDWalletProvider(privateKey, `https://rpc.astranaut.dev/`, 0, 1)
 } catch (e) {
   console.log(e)
 }
@@ -15,7 +15,7 @@ module.exports = {
   networks: {
     development: {
       host: "127.0.0.1",
-      port: 7545,
+      port: 8545,
       network_id: "*" // Match any network id
     },
     testnet: {
@@ -25,6 +25,13 @@ module.exports = {
       timeoutBlocks: 10000,
       gasLimit: 100000000
     },
+    astra_testnet: {
+      provider: astraTestnetProvider,
+      network_id: 11115,
+      confirmations: 5,
+      timeoutBlocks: 10000,
+      gasLimit: 100000000
+    }
   },
 
   contracts_directory: './contracts/',
@@ -46,5 +53,5 @@ module.exports = {
         runs: 200
       }
     }
-  },
+  }
 };
