@@ -66,7 +66,10 @@ const verifyVRFProof = async (
         let {pi, randomNumber} = generateRandomNumberAndProof(secret_key, public_key, seed)
 
         let ret = await verifyVRFProof(public_key, pi, seed)
-        console.log("ret:", ret)
+        console.log("txHash:", ret.transactionHash)
+
+        let success = ret.events.VerifyStatus.raw.topics[1] === '0x0000000000000000000000000000000000000000000000000000000000000001'
+        console.log("verifyStatus:", success)
     } catch (e) {
         // This should return `Error: Returned error: execution reverted: User already has a proxy`
         console.log(e);

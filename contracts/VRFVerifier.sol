@@ -12,7 +12,7 @@ import "./VRF.sol";
  */
 contract VRFVerifier {
 
-    event VerifyStatus(bool status);
+    event VerifyStatus(bool indexed status);
 
     function hashToTryAndIncrement(uint256[2] memory _publicKey, bytes memory _message) public returns (uint, uint) {
         return VRF.hashToTryAndIncrement(_publicKey, _message);

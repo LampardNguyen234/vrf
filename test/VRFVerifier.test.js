@@ -75,14 +75,14 @@ contract('VRFVerifier', (accounts) => {
                 V.x.toString(), V.y.toString(),
             )
 
-            assert.equal("0x".concat(local_hash.toString(16)), ret.toString())
+            assert.equal("0x".concat(local_hash.toString(16, 32)), ret.toString())
         })
     })
 
     describe('hashToTryAndIncrement', async () => {
         it('should be the same as at the client side', async () => {
             let public_key_point = string_to_point(public_key)
-            let {hash} = hash_to_curve(public_key_point, alpha)
+            let hash = hash_to_curve(public_key_point, alpha)
 
             let ret = await instance.hashToTryAndIncrement.call(
                 [public_key_point.x.toString(), public_key_point.y.toString()], alpha
